@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Doceria da Yu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+<header>
+    <nav class="cabecalho d-flex justify-content-between align-items-center p-3 bg-light shadow">
+      <div class="nav-logo">
+        <img src="../assets/logo-site.png" alt="Logo" class="logo-img">
+      </div>
+      <div class="navbar bg-body-tertiary w-50">
+        <div class="container-fluid">
+          <form class="d-flex w-100" role="search">
+            <input class="form-control me-2 flex-grow-1" type="search" placeholder="Buscar" aria-label="Buscar">
+            <button class="btn btn-outline-success" type="submit">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="nav-cadastro d-flex gap-2">
+        <a routerLink="/cadastro" class="text-black text-decoration-none">
+          <button class="btn btn-light">
+            <i class="fa-solid fa-user"></i> Cadastro
+          </button>
+        </a>
+        <a routerLink="/login" class="text-black text-decoration-none">
+          <button class="btn btn-light">
+            <i class="fa-solid fa-user"></i> Entrar
+          </button>
+        </a>
+        <a routerLink="/gravar-pedido" class="btn-carrinho-superior">
+          <button class="btn btn-carrinho-superior">
+            <i class="fa-solid fa-cart-plus"></i>
+          </button>
+        </a>
+      </div>
+    </nav>
+  </header>
+<body>
+  <div class="menu-container">
+      <div class="menu"> MENU</div>
+  </div>
+  <nav class="d-flex justify-content-center mt-3" aria-label="Navegação de página">
+    <ul class="pagination pagination-sm my-0">
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Próximo">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+  <div class="container container-produtos mt-4">
+      <div class="row justify-content-center g-4">
+          <div class="col-sm-6 col-md-4 col-lg-3 d-flex">
+              <div class="card card-produto flex-fill">
+                  <img src="../assets/bolo1.jpeg" alt="Bolo de Cenoura" class="card-img-top">
+                  <div class="card-body text-center">
+                      <h5 class="card-title">Bolo de Cenoura</h5>
+                      <h6 class="text-danger">R$35,99</h6>
+                      <p class="card-text">Bolo de cenoura com cobertura de chocolate 400g</p>
+                  </div>
+                  <div class="card-footer text-center d-flex justify-content-around">
+                      <a routerLink= "/detalhe-produto" button class= "btn-detalhes outline">Detalhes</a>
+                      <button class="btn btn-carrinho"><i class="fa-solid fa-cart-plus"></i></button>
+                  </div>
+              </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 d-flex">
+            <div class="card card-produto flex-fill">
+                <img src="../assets/bolo2.jpeg" alt="Bolo de Cenoura" class="card-img-top">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Bolo de Milho com Goiabada</h5>
+                    <h6 class="text-danger">R$25,99</h6>
+                    <p class="card-text">Bolo de Milho com Goiabada 400g</p>
+                </div>
+                <div class="card-footer text-center d-flex justify-content-around">
+                    <a routerLink= "/detalhe-produto" button class= "btn-detalhes outline">Detalhes</a>
+                    <button class="btn btn-carrinho"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3 d-flex">
+          <div class="card card-produto flex-fill">
+              <img src="../assets/brownie1.jpeg" alt="Brownie de Chocolate" class="card-img-top">
+              <div class="card-body text-center">
+                  <h5 class="card-title">Brownie de Chocolate</h5>
+                  <h6 class="text-danger">R$10,99</h6>
+                  <p class="card-text">Brownie de Chocolate com casquinha crocante e Gotas de Chocolate</p>
+              </div>
+              <div class="card-footer text-center d-flex justify-content-around">
+                <a routerLink= "/detalhe-produto" button class= "btn-detalhes outline">Detalhes</a>
+                  <button class="btn btn-carrinho"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+          </div>
+      </div>
+      <div class="col-sm-6 col-md-4 col-lg-3 d-flex">
+          <div class="card card-produto flex-fill">
+              <img src="../assets/cookie1.jpeg" alt="Cookie de Baunilha" class="card-img-top">
+              <div class="card-body text-center">
+                  <h5 class="card-title">Cookie de Baunilha</h5>
+                  <h6 class="text-danger">R$10,99</h6>
+                  <p class="card-text">Cookie feito com massa de baunilha e Gotas de chocolate</p>
+              </div>
+              <div class="card-footer text-center d-flex justify-content-around">
+                <a routerLink= "/detalhe-produto" button class= "btn-detalhes outline">Detalhes</a>
+                  <button class="btn btn-carrinho"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+          </div>
+      </div>
+      </div>
+  </div>
+
+  <footer class="bg-light py-4 mt-4">
+      <div class="container text-center">
+          <p>&copy; 2023 - Doceria da Yu Online Ltda</p>
+          <p>Rua Eu Te Amo Stephany, 2501, Rio de Janeiro - SP</p>
+          <p>CNPJ: 30.102.003/2612-20</p>
+          <a href="#" class="text-decoration-none text-dark">Privacidade</a> |
+          <a href="#" class="text-decoration-none text-dark">Termos</a> |
+          <a href="#" class="text-decoration-none text-dark">Fale Conosco</a>
+      </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
