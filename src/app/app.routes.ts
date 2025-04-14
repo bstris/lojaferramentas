@@ -12,3 +12,4 @@ export const routes: Routes = [
   { path: 'gravar-pedido', component: GravarPedidoComponent },
   { path: 'detalhe-produto', component: DetalheProdutoComponent },
 ];
+
