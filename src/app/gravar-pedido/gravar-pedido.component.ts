@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CarrinhoService } from '../gravar-pedido/carrinho.service';
 import { CommonModule } from '@angular/common';
+import { Carrinho } from '../model/carrinho';
 
 @Component({
   selector: 'app-gravar-pedido',
@@ -8,28 +8,38 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   templateUrl: './gravar-pedido.component.html',
   styleUrl: './gravar-pedido.component.css'
-
 })
 export class GravarPedidoComponent implements OnInit {
-  itens: any[] = [];
-  total: number = 0;
+  public mensagem: string = '';
+  public obj: Carrinho = new Carrinho();
 
-  constructor(private carrinhoService: CarrinhoService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.itens = this.carrinhoService.listar();
-    this.calcularTotal();
+    if (typeof window !== 'undefined') {
+      const json = localStorage.getItem('carrinho');
+      if (json === null) {
+        this.mensagem = 'Seu carrinho está vazio!!!';
+      } else {
+        this.obj = JSON.parse(json);
+      }
+    }
   }
 
-  calcularTotal() {
-    this.total = this.itens.reduce((soma, item) => soma + item.preco, 0);
+  limpar(): void {
+    this.obj = new Carrinho();
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('carrinho');
+    }
+    this.mensagem = 'Seu carrinho está vazio!!!';
   }
 
-  finalizarPedido() {
-    alert('Pedido finalizado com sucesso!');
-    this.carrinhoService.limpar();
-    this.itens = [];
-    this.total = 0;
+  finalizarPedido(): void {
+    // Implementar lógica de finalização
   }
-  
 }
+
+
+  
+  
+ 
