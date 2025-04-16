@@ -14,10 +14,12 @@
 <div class="container mt-5">
     <h2 class="mb-4 text-center">🧁 Seu Pedido</h2>
   
-   
+    <div id="produtos-carrinho" class="container container-produtos mt-4">
+      <div class="row justify-content-center g-4">
       <div class="col-md-6 col-lg-4" *ngFor="let item of obj.itens;">
         <div class="card h-100 shadow-sm">
           <div class="card-body">
+            <img src="../assets/produto{{item.id}}.jpg" alt="imagem do produto" class="card-img-top">
             <h5 class="card-title">{{item.nome}}</h5>
             <p class="card-text">{{item.descricao}}</p>
             <p class="card-text fw-bold text-success">R$ {{item.preco}}</p>
@@ -28,6 +30,8 @@
             </button>
           </div>
         </div>
+      </div>
+      </div>
       </div>
 
   
