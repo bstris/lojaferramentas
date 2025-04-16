@@ -42,15 +42,14 @@ export class VitrineComponent {
     const termo = this.termoBusca.trim().toLowerCase();
   
     if (termo === '') {
-      
-      this.produtos = this.produtos;
+      this.produtos = [...this.produtosFiltrados]; 
     } else {
-      
-      this.produtos = this.produtos.filter(produto =>
+      this.produtos = this.produtosFiltrados.filter(produto =>
         produto.nome.toLowerCase().includes(termo)
       );
     }
   }
+  
   
 
   adicionarAoCarrinho(item: Produto): void {
