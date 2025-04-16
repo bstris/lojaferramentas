@@ -19,7 +19,9 @@ import { routes } from './app.routes';
     FormsModule,
     RouterModule.forRoot(routes),
     CadastroComponent,
-    LoginComponent
+    LoginComponent,
+    GravarPedidoComponent,
+    DetalheProdutoComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

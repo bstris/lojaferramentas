@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<div class="alert alert-info">{{mensagem}}</div>
+
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -13,17 +14,13 @@
 <div class="container mt-5">
     <h2 class="mb-4 text-center">🧁 Seu Pedido</h2>
   
-    <div *ngIf="itens.length === 0" class="alert alert-info text-center">
-      Seu carrinho está vazio.
-    </div>
-  
-    <div *ngIf="itens.length > 0" class="row g-3">
-      <div class="col-md-6 col-lg-4" *ngFor="let item of itens; let i = index">
+   
+      <div class="col-md-6 col-lg-4" *ngFor="let item of obj.itens;">
         <div class="card h-100 shadow-sm">
           <div class="card-body">
-            <h5 class="card-title">{{ item.nome }}</h5>
-            <p class="card-text">{{ item.descricao }}</p>
-            <p class="card-text fw-bold text-success">R$ {{ item.preco.toFixed(2) }}</p>
+            <h5 class="card-title">{{item.nome}}</h5>
+            <p class="card-text">{{item.descricao}}</p>
+            <p class="card-text fw-bold text-success">R$ {{item.preco}}</p>
           </div>
           <div class="card-footer text-end">
             <button class="btn btn-outline-danger btn-sm">
@@ -32,10 +29,10 @@
           </div>
         </div>
       </div>
-    </div>
+
   
-    <div class="mt-4 text-end" *ngIf="itens.length > 0">
-      <h4>Total: <span class="text-primary">R$ {{ total.toFixed(2) }}</span></h4>
+    <div class="mt-4 text-end">
+      <h4>Total: <span class="text-primary">R$ {{obj.total}}</span></h4>
       <button class="btn btn-success mt-2" (click)="finalizarPedido()">
         <i class="fas fa-check"></i> Finalizar Pedido
       </button>
