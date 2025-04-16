@@ -83,6 +83,10 @@ export class VitrineComponent {
     location.href = "./login";
   }
 
+  menu() {
+    location.href = "./";
+  }
+
   detalhe(obj: Produto) {
     localStorage.setItem("produto", JSON.stringify(obj));
     location.href = "./detalhe-produto";

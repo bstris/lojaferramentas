@@ -37,6 +37,7 @@ export class GravarPedidoComponent implements OnInit {
   finalizarPedido(): void {
     // Implementar lógica de finalização
   }
+  
 }
 
 
