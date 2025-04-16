@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-    <div class="alert alert-info" >{{mensagem}}</div>  
+<html lang="pt-br"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +9,7 @@
 <header>
     <nav class="cabecalho d-flex justify-content-between align-items-center p-3 bg-light shadow">
       <div class="nav-logo">
-        <a routerLink="/"><img src= "../assets/logo-site.png" alt="Logo" class="logo-img"></a>
+        <a routerLink="/vitrine"><img src= "../assets/logo-site.png" alt="Logo" class="logo-img"></a>
       </div>
       <div class="navbar bg-body-tertiary w-50">
         <div class="container-fluid">
@@ -28,12 +27,19 @@
             </ul>
             
         </div>
-        <form class="d-flex ms-auto" role="search">
-          <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
-          <button class="btn btn-outline-success" type="submit">
+        <div class="d-flex ms-auto" role="search">
+          <input
+            class="form-control me-2"
+            type="text"
+            placeholder="Buscar"
+            [(ngModel)]="termoBusca"
+            (input)="buscar()"
+            name="busca"
+          />
+          <button class="btn btn-outline-success" type="button">
             <i class="fa-solid fa-magnifying-glass"></i>
           </button>
-        </form>
+        </div>        
         </div>
       </div>
       <div class="nav-cadastro d-flex gap-2">
@@ -64,7 +70,7 @@
         <div class="col-lg-6">
           <h1 class="display-4 fw-bold text-white">Bem vindo a Doceria da Yu! :) </h1>
           <p class="lead">Descubra o verdadeiro significado de "A vida é doce!"</p>
-          <a routerLink="/" class="btn btn-detalhes btn-lg">Confira nossos produtos</a>
+          <a href="#produtos" class="btn btn-detalhes btn-lg">Confira nossos produtos</a>
         </div>
       </div>
     </div>
@@ -82,9 +88,9 @@
     </ul>
 </nav>
 
-  <div id="produtos"class="container container-produtos mt-4" *ngFor="let obj of produtos">
+  <div id="produtos"class="container container-produtos mt-4">
       <div class="row justify-content-center g-4">
-          <div class="col-sm-6 col-md-4 col-lg-3 d-flex">
+          <div class="col-sm-6 col-md-4 col-lg-3 d-flex" *ngFor="let obj of produtos">
               <div class="card card-produto flex-fill">
                   <img src="../assets/produto{{obj.id}}.jpg" alt="imagem do produto" class="card-img-top">
                   <div class="card-body text-center">
