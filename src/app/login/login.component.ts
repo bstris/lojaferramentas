@@ -33,4 +33,20 @@ export class LoginComponent {
       alert('Por favor, preencha todos os campos corretamente!');
     }
   }
+  carrinho() {
+    location.href = "./gravar-pedido";
+  }
+
+  cadastro() {
+    location.href = "./cadastro";
+  }
+
+  login() {
+    location.href = "./login";
+  }
+
+  menu() {
+    location.href = "./";
+  }
+
 }

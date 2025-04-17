@@ -135,7 +135,7 @@
     transform: scale(1.05);
   }
   
-  /* Menu Principal */
+
   .menu-container {
     margin: 20px 0;
     color: var(--branco);
@@ -150,6 +150,10 @@
     text-transform: uppercase;
     box-shadow: var(--sombra);
     border-radius: 8px;
+  }
+  body, header {
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
   .hero {

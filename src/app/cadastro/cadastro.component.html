@@ -13,7 +13,7 @@
     <header>
       <nav class="cabecalho d-flex justify-content-between align-items-center p-3 bg-light shadow">
         <div class="nav-logo">
-          <a href="../app.component.html"><img src="../../assets/logo-site.png" alt="Logo" class="logo-img"></a>
+          <a (click)="menu()"><img src="../../assets/logo-site.png" alt="Logo" class="logo-img"></a>
         </div> 
         <div class="navbar bg-body-tertiary w-50">
           <div class="container-fluid">
@@ -25,14 +25,9 @@
             </form>
           </div>
         </div>
-        <div class="nav-cadastro">
-          <a href="../cadastro/cadastro.component.html" class="text-black text-decoration-none">
-            <button class="btn btn-light">
-              <i class="fa-solid fa-user"></i> Cadastro
-            </button>
-          </a>  
-          <a href="../login/login.component.html" class="text-black text-decoration-none">
-            <button class="btn btn-light">
+        <div class="nav-cadastro">  
+          <a class="text-black text-decoration-none">
+            <button class="btn btn-light" (click)="login()">
               <i class="fa-solid fa-user"></i> Entrar
             </button>
           </a>  
@@ -100,7 +95,7 @@
                   
                   <div class="text-center mt-3">
                     <p class="mb-0">Já é cadastrado?
-                      <a href="../login/login.component.html" lass="text-decoration-none fw-bold">Clique aqui</a>
+                      <a (click)="login()" class="text-decoration-none fw-bold">Clique aqui</a>
                     </p>
                   </div>
                 </form>

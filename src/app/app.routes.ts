@@ -14,5 +14,6 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'gravar-pedido', component: GravarPedidoComponent },
   { path: 'detalhe-produto', component: DetalheProdutoComponent },
+  { path: 'vitrine', component: VitrineComponent }
 ];
 

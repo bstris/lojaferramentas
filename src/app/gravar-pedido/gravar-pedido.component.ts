@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Carrinho } from '../model/carrinho';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gravar-pedido',
@@ -12,6 +13,7 @@ import { Carrinho } from '../model/carrinho';
 export class GravarPedidoComponent implements OnInit {
   public mensagem: string = '';
   public obj: Carrinho = new Carrinho();
+  router: any;
 
   constructor() {}
 
@@ -32,10 +34,30 @@ export class GravarPedidoComponent implements OnInit {
       localStorage.removeItem('carrinho');
     }
     this.mensagem = 'Seu carrinho está vazio!!!';
+    location.href = "./"
+    alert(`Compra finalizada`);
+  }
+  removerItem(index: number) {
+    this.obj.itens.splice(index, 1);
+    localStorage.setItem('carrinho', JSON.stringify(this.obj.itens));
+    this.mensagem = 'Item removido do carrinho!';
+    setTimeout(() => this.mensagem = '', 3000);
+  }
+  finalizarPedido(): void {
+  }
+  menu() {
+    location.href = "./";
+  }
+  carrinho() {
+    location.href = "./gravar-pedido";
   }
 
-  finalizarPedido(): void {
-    // Implementar lógica de finalização
+  cadastro() {
+    location.href = "./cadastro";
+  }
+
+  login() {
+    location.href = "./login";
   }
 }
 
