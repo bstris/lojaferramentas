@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Produto } from '../model/produto';
+import { Carrinho } from '../model/carrinho';
 
 @Component({
   selector: 'app-detalhe-produto',
@@ -22,7 +23,39 @@ export class DetalheProdutoComponent{
         this.obj = JSON.parse(json);
       }
   }
-  public adicionarAoCarrinho(){
-
-  }
+  adicionarAoCarrinho(item: Produto): void {
+     if (typeof window === 'undefined') return;
+ 
+     let json = localStorage.getItem("carrinho");
+     let carrinho: Carrinho = json ? JSON.parse(json) : new Carrinho();
+ 
+     carrinho.itens = carrinho.itens ?? [];
+     carrinho.total = carrinho.total ?? 0;
+ 
+     carrinho.itens.push(item);
+     carrinho.total += item.preco;
+ 
+     localStorage.setItem("carrinho", JSON.stringify(carrinho));
+     alert(`${item.nome} adicionado ao carrinho`);
+ 
+     location.href = "/gravar-pedido";
+   }
+ 
+   carrinho() {
+     location.href = "./gravar-pedido";
+   }
+ 
+   cadastro() {
+     location.href = "./cadastro";
+   }
+ 
+   login() {
+     location.href = "./login";
+   }
+ 
+   menu() {
+     location.href = "./";
+   }
+ 
+  
 }
