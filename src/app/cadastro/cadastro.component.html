@@ -48,7 +48,7 @@
                   <div class="mb-3">
                     <label for="nome" class="form-label fw-bold">Nome Completo:</label>
                     <input type="text" class="form-control" id="nome" 
-                           [(ngModel)]="usuario.nome" name="nome" 
+                           [(ngModel)]="perfil.nome" name="nome" 
                            required minlength="3" #nomeInput="ngModel">
                     <div *ngIf="nomeInput.invalid && (nomeInput.dirty || nomeInput.touched)" class="text-danger">
                       <div *ngIf="nomeInput.errors?.['required']">Nome é obrigatório</div>
@@ -59,7 +59,7 @@
                   <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" 
-                           [(ngModel)]="usuario.email" name="email" 
+                           [(ngModel)]="perfil.email" name="email" 
                            required email #emailInput="ngModel">
                     <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)" class="text-danger">
                       <div *ngIf="emailInput.errors?.['required']">Email é obrigatório</div>
@@ -70,7 +70,7 @@
                   <div class="mb-3">
                     <label for="telefone" class="form-label">Telefone</label>
                     <input type="text" class="form-control" id="telefone" 
-                           [(ngModel)]="usuario.telefone" name="telefone" 
+                           [(ngModel)]="perfil.telefone" name="telefone" 
                            required pattern="^[0-9]{10,11}$" #telefoneInput="ngModel">
                     <div *ngIf="telefoneInput.invalid && (telefoneInput.dirty || telefoneInput.touched)" class="text-danger">
                       <div *ngIf="telefoneInput.errors?.['required']">Telefone é obrigatório</div>
@@ -81,7 +81,7 @@
                   <div class="mb-3">
                     <label for="senha" class="form-label">Senha</label>
                     <input type="password" class="form-control" id="senha" 
-                           [(ngModel)]="usuario.senha" name="senha" 
+                           [(ngModel)]="perfil.senha" name="senha" 
                            required minlength="6" #senhaInput="ngModel">
                     <div *ngIf="senhaInput.invalid && (senhaInput.dirty || senhaInput.touched)" class="text-danger">
                       <div *ngIf="senhaInput.errors?.['required']">Senha obrigatória</div>

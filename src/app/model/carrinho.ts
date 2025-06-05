@@ -1,6 +1,9 @@
-import { Produto } from "./produto";
-export class Carrinho {
-    public id: number= 0;
-    public total:number= 0;
-    public itens:Produto[] = [];
+import { ProdutoCarrinho } from './produto-carrinho';
+import { Perfil } from './perfil';
+
+export interface Carrinho {
+  id?: number;
+  total: number;
+  produtos: ProdutoCarrinho[];
+  comprador: Perfil;
 }
