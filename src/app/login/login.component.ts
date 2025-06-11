@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import {Perfil} from '../model/perfil';
+import { PerfilService } from '../services/perfil.service';
 
 @Component({
   selector: 'app-login',
@@ -16,23 +18,31 @@ export class LoginComponent {
     senha: ''
   };
 
-  constructor(private router: Router) {}
+  constructor(private PerfilService: PerfilService, private router: Router) {}
 
   validarLogin(form: NgForm): void {
     if (form.valid) {
-      const usuario = JSON.parse(localStorage.getItem('usuario') || '{}');
       
-      if (usuario.email === this.loginForm.email && usuario.senha === this.loginForm.senha) {
-        alert('Login realizado com sucesso!');
-        localStorage.setItem('usuarioLogado', 'true');
-        this.router.navigate(['/']);
-      } else {
-        alert('Email ou senha incorretos!');
+      if (form.valid) {
+        this.PerfilService.login(this.loginForm.email, this.loginForm.senha).subscribe({
+          next: (perfil: Perfil) => {
+            if (perfil) {
+              localStorage.setItem('usuarioLogado', JSON.stringify(perfil));
+              this.router.navigate(['/']);
+            } else {
+              alert('Email ou senha incorretos!');
+            }
+          },
+          error: () => {
+            alert('Erro ao realizar login. Por favor, tente novamente.');
+          }
+        });
+      }else{
+        alert('Por favor, preencha todos os campos corretamente!');
+        form.resetForm();
       }
-    } else {
-      alert('Por favor, preencha todos os campos corretamente!');
+     }
     }
-  }
   carrinho() {
     location.href = "./gravar-pedido";
   }

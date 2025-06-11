@@ -21,10 +21,13 @@ export class PerfilService {
   }
 
   cadastrar(perfil: Perfil): Observable<Perfil> {
-    return this.http.post<Perfil>(this.api, perfil);
+    return this.http.post<Perfil>(`${this.api}/cadastrar`, perfil);
   }
 
   deletar(id: number): Observable<void> {
     return this.http.delete<void>(`${this.api}/${id}`);
+  }
+  login(email: string, senha: string): Observable<Perfil> {
+    return this.http.post<Perfil>(`${this.api}/login`, { email, senha });
   }
 }

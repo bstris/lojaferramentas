@@ -3,6 +3,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { PerfilService } from '../services/perfil.service';
 import { CommonModule } from '@angular/common';
 import { Perfil } from '../model/perfil';
+import { Router } from 'express';
 
 @Component({
   selector: 'app-cadastro',
@@ -15,7 +16,7 @@ export class CadastroComponent {
 
   perfil: Perfil = { nome: '', email: '', senha: '', tipo: 'cliente' };
 
-  constructor(private perfilService: PerfilService) {}
+  constructor(private perfilService: PerfilService, private router: Router) {}
 
   cadastrarUsuario(form: NgForm): void {
     if (form.valid) {
@@ -24,6 +25,7 @@ export class CadastroComponent {
           alert('Perfil cadastrado com sucesso!');
           form.resetForm();
           this.perfil = { nome: '', email: '', senha: '', telefone: '', tipo: 'cliente' };
+          this.router.navigate(['/login']);
         },
         error: (err) => {
           console.error(err);
@@ -37,18 +39,18 @@ export class CadastroComponent {
 
   // Navegação
   carrinho() {
-    location.href = "./gravar-pedido";
+    this.router.navigate = "./gravar-pedido";
   }
 
   cadastro() {
-    location.href = "./cadastro";
+    this.router.navigate = "./cadastro";
   }
 
   login() {
-    location.href = "./login";
+    this.router.navigate = "./login";
   }
 
   menu() {
-    location.href = "./";
+    this.router.navigate = "./";
   }
 }
