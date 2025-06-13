@@ -1,67 +1,67 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Carrinho } from '../model/carrinho';
-import { Router } from '@angular/router';
+import { CarrinhoService } from '../service/carrinho.service';
 
 @Component({
   selector: 'app-gravar-pedido',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './gravar-pedido.component.html',
-  styleUrl: './gravar-pedido.component.css'
+  styleUrls: ['./gravar-pedido.component.css']
 })
 export class GravarPedidoComponent implements OnInit {
-  public mensagem: string = '';
-  public obj: Carrinho = new Carrinho();
-  router: any;
+carrinho() {
+throw new Error('Method not implemented.');
+}
+login() {
+throw new Error('Method not implemented.');
+}
+cadastro() {
+throw new Error('Method not implemented.');
+}
+menu() {
+throw new Error('Method not implemented.');
+}
+  obj = {
+    itens: [] as any[],
+    total: 0
+  };
 
-  constructor() {}
+  constructor(private carrinhoService: CarrinhoService) {}
 
   ngOnInit(): void {
-    if (typeof window !== 'undefined') {
-      const json = localStorage.getItem('carrinho');
-      if (json === null) {
-        this.mensagem = 'Seu carrinho está vazio!!!';
-      } else {
-        this.obj = JSON.parse(json);
-      }
+    const carrinhoLocal = localStorage.getItem('carrinho');
+    if (carrinhoLocal) {
+      this.obj.itens = JSON.parse(carrinhoLocal);
+      this.calcularTotal();
     }
+  }
+
+  removerItem(id: number): void {
+    this.obj.itens = this.obj.itens.filter(item => item.id !== id);
+    this.calcularTotal();
+    localStorage.setItem('carrinho', JSON.stringify(this.obj.itens)); 
+  }
+
+  calcularTotal(): void {
+    this.obj.total = this.obj.itens.reduce((sum, item) => sum + item.preco, 0);
   }
 
   limpar(): void {
-    this.obj = new Carrinho();
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('carrinho');
-    }
-    this.mensagem = 'Seu carrinho está vazio!!!';
-    location.href = "./"
-    alert(`Compra finalizada`);
-  }
-  removerItem(index: number) {
-    this.obj.itens.splice(index, 1);
-    localStorage.setItem('carrinho', JSON.stringify(this.obj.itens));
-    this.mensagem = 'Item removido do carrinho!';
-    setTimeout(() => this.mensagem = '', 3000);
-  }
-  finalizarPedido(): void {
-  }
-  menu() {
-    location.href = "./";
-  }
-  carrinho() {
-    location.href = "./gravar-pedido";
-  }
+    const dto = {
+      valor: this.obj.total,
+      produtosCarrinhos: this.obj.itens.map(item => ({
+        produto: { id: item.id }
+      }))
+    };
 
-  cadastro() {
-    location.href = "./cadastro";
-  }
-
-  login() {
-    location.href = "./login";
+    this.carrinhoService.finalizarCompra(dto).subscribe({
+      next: (mensagem) => {
+        alert(mensagem);
+        this.obj = { itens: [], total: 0 };
+        localStorage.removeItem('carrinho'); // limpa localStorage após sucesso
+      },
+      error: () => alert('Erro ao finalizar o pedido!')
+    });
   }
 }
-
-
-  
-  
- 
