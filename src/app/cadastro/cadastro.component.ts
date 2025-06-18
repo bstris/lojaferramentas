@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
+import { PerfilService } from '../service/perfil.service'; // ajuste o caminho
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,35 +12,32 @@ import { CommonModule } from '@angular/common';
 })
 export class CadastroComponent {
   usuario = {
-    nome: '',
-    email: '',
-    telefone: '',
-    senha: ''
+    nome: '', email: '', telefone: '', cep: '', rua: '', numero: '',
+    complemento: '', cidade: '', bairro: '', estado: '', senha: '', confirmarSenha: ''
   };
 
+  constructor(private perfilService: PerfilService) {}
+
   cadastrarUsuario(form: NgForm): void {
-    if(form.valid) {
-      localStorage.setItem('usuario', JSON.stringify(this.usuario));
-      alert('Usuário cadastrado com sucesso!');
-      form.resetForm();
-      this.usuario = { nome: '', email: '', telefone: '', senha: '' };
+    if (form.valid && this.usuario.senha === this.usuario.confirmarSenha) {
+      this.perfilService.salvar(this.usuario.nome, this.usuario.email, this.usuario.senha, 'cliente', this.usuario.telefone)
+        .subscribe({
+          next: (res) => {
+            alert(res);
+            form.resetForm();
+            this.usuario = { nome: '', email: '', telefone: '', cep: '', rua: '', numero: '', complemento: '', cidade: '', bairro: '', estado: '', senha: '', confirmarSenha: '' };
+          },
+          error: (err) => {
+            console.error(err);
+            alert('Erro ao salvar usuário!');
+          }
+        });
     } else {
       alert('Por favor, preencha todos os campos corretamente!');
     }
   }
-  carrinho() {
-    location.href = "./gravar-pedido";
-  }
-
-  cadastro() {
-    location.href = "./cadastro";
-  }
-
-  login() {
-    location.href = "./login";
-  }
-
-  menu() {
-    location.href = "./";
-  }
+  carrinho() { location.href = "./gravar-pedido"; }
+  cadastro() { location.href = "./cadastro"; }
+  login() { location.href = "./login"; }
+  menu() { location.href = "./"; }
 }
