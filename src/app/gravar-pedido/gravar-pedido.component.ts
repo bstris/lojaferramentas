@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarrinhoService } from '../service/carrinho.service';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-gravar-pedido',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './gravar-pedido.component.html',
   styleUrls: ['./gravar-pedido.component.css']
 })
@@ -27,7 +28,7 @@ throw new Error('Method not implemented.');
     total: 0
   };
 
-  constructor(private carrinhoService: CarrinhoService) {}
+  constructor(private carrinhoService: CarrinhoService, private router: Router) {}
 
   ngOnInit(): void {
     const carrinhoLocal = localStorage.getItem('carrinho');
@@ -48,6 +49,13 @@ throw new Error('Method not implemented.');
   }
 
   limpar(): void {
+    const idUsuario = localStorage.getItem('usuarioLogadoId');
+
+    if (!idUsuario) {
+    alert('Você precisa estar logado para finalizar a compra.');
+    this.router.navigate(['/login']);
+    return;
+  }
     const dto = {
       valor: this.obj.total,
       produtosCarrinhos: this.obj.itens.map(item => ({
@@ -55,7 +63,7 @@ throw new Error('Method not implemented.');
       }))
     };
 
-    this.carrinhoService.finalizarCompra(dto).subscribe({
+    this.carrinhoService.finalizarCompra(dto, idUsuario).subscribe({
       next: (mensagem) => {
         alert(mensagem);
         this.obj = { itens: [], total: 0 };

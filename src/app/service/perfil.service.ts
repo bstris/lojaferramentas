@@ -3,6 +3,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+export interface UsuarioAutenticado {
+  id: number;
+  tipo: string;
+}
 @Injectable({ providedIn: 'root' })
 export class PerfilService {
   private baseUrl = 'http://localhost:8080/Perfil'; 
@@ -13,7 +17,7 @@ export class PerfilService {
     return this.http.post(`${this.baseUrl}/Salvar/${nome}/${email}/${senha}/${tipo}/${telefone}`, null, { responseType: 'text' });
   }
 
-  autenticar(email: string, senha: string): Observable<string> {
-    return this.http.get(`${this.baseUrl}/Autenticar/${email}/${senha}`, { responseType: 'text' });
+  autenticar(email: string, senha: string): Observable<UsuarioAutenticado> {
+    return this.http.get<UsuarioAutenticado>(`${this.baseUrl}/Autenticar/${email}/${senha}`, { responseType: 'text' });
   }
 }

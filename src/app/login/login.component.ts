@@ -23,11 +23,12 @@ export class LoginComponent {
     if (form.valid) {
       this.perfilService.autenticar(this.loginForm.email, this.loginForm.senha)
         .subscribe({
-          next: (tipo) => {
-            if (tipo) {
+          next: (usuario) => {
+            if (usuario && usuario.id) {
               alert('Login realizado com sucesso!');
+              localStorage.setItem('usuarioLogadoId', String(usuario.id));
               localStorage.setItem('usuarioLogado', 'true');
-              localStorage.setItem('tipoUsuario', tipo); 
+              localStorage.setItem('tipoUsuario', usuario.tipo);  
               this.router.navigate(['/']);
             } else {
               alert('Email ou senha incorretos!');
